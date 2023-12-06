@@ -1,4 +1,4 @@
-# WebAutomationAssessment
+# Web Automation Assessment with Selenium and Cucumber
 ----------------------------------------------------
 ## How to execute scenarios with cross-browsers and generat reports:
 - Determine the name of the browser you need (crome - firefox - edge) in config.properties file.
