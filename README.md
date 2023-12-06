@@ -1,6 +1,6 @@
 # WebAutomationAssessment
 ----------------------------------------------------
-## How to execute tests with cross-browsers and generat reports:
+## How to execute scenarios with cross-browsers and generat reports:
 - Determine the name of the browser you need (crome - firefox - edge) in config.properties file.
 - Run TestRunner class for the two scenarios or determine specific tage to run one scenario.
 - If scenario is failed you will see screenshot taken and saved in screenshots folder.
