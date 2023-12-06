@@ -1,3 +1,4 @@
+@add-delete-user
 Feature: Login as an admin and add/delete user.
 
   Background: Login as an admin.
