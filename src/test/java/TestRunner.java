@@ -7,10 +7,10 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "stepDefinitions",
         plugin = {"pretty",
-                "html:target/cucumber.html",
+                "html:target/cucumber-reports/cucumber.html",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
-                "json:target/cucumber.json", "junit:target/cukes.xml",
-                "rerun:target/rerun.txt"},
+                "json:target/cucumber-reports/cucumber.json", "junit:target/cucumber-reports/cukes.xml",
+                "rerun:target/cucumber-reports/rerun.txt"},
         tags = ""
 )
 public class TestRunner{}
