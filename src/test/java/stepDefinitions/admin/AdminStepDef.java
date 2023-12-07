@@ -1,22 +1,22 @@
 package stepDefinitions.admin;
 import io.cucumber.java.en.*;
 import pages.AdminPage;
-import pages.HomePage;
+import pages.DashboardPage;
 import pages.LoginPage;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static stepDefinitions.Hooks.driver;
 
 public class AdminStepDef {
-    private int numberOfRecords;
-    private final HomePage homePage = new HomePage(driver);
+    private static int numberOfRecords;
+    private final DashboardPage homePage = new DashboardPage(driver);
     private final LoginPage loginPage = new LoginPage(driver);
     private final AdminPage adminPage = new AdminPage(driver);
 
 
     @When("I should navigated to login page")
     public void isLoginPageDisplayed(){
-        assertEquals("",loginPage.getLoginTxt());
+        assertEquals("Login",loginPage.getLoginTxt());
     }
 
     @When("I enter {string} as username")
@@ -36,7 +36,7 @@ public class AdminStepDef {
 
     @Then("I should navigated to home page")
     public void iShouldNavigatedToHomePage() {
-        assertEquals("",homePage.getHomePageTxt());
+        assertEquals("Dashboard",homePage.getDashboardPageTxt());
     }
 
     @When("I click on Admin tab on the left side menu")
@@ -46,11 +46,11 @@ public class AdminStepDef {
 
     @Then("I should navigated to admin page")
     public void iShouldNavigatedToAdminPage() {
-        assertEquals("",adminPage.getAdminPageTxt());
+        assertEquals("Admin",adminPage.getAdminPageTxt());
     }
 
     @Given("I should see number of records displayed")
-    public void iShouldSeeNumberOfRecordsDisplayed() {
+    public void iShouldSeeNumberOfRecordsDisplayed(){
         assertTrue(adminPage.isNumberOfRecordsDisplayed());
         numberOfRecords = adminPage.getNumberOfRecords();
     }
@@ -60,9 +60,9 @@ public class AdminStepDef {
         adminPage.clickOnAddBtn();
     }
 
-    @And("I enter the required data for the new user")
-    public void iEnterTheRequiredDataForTheNewUser() {
-        adminPage.enterRecordData();
+    @And("I enter the employee name as {string}, username as {string}, password as {string}")
+    public void iEnterTheRequiredDataForTheNewUser(String name, String userName, String password) throws InterruptedException {
+        adminPage.enterUserDetails(name,userName,password);
     }
 
     @And("I click on save button")
@@ -71,17 +71,23 @@ public class AdminStepDef {
     }
 
     @Then("I should see the number of records increased by 1")
-    public void iShouldSeeTheNumberOfRecordsIncreasedBy1() {
-        assertEquals(numberOfRecords + 1,adminPage.getNumberOfRecords());
+    public void iShouldSeeTheNumberOfRecordsIncreasedBy1(){
+        assertEquals(numberOfRecords +1,adminPage.getNumberOfRecords());
     }
 
-    @Given("I click on delete button for the new user")
+    @And("I click on delete button for the new user")
     public void iClickOnDeleteButtonForTheNewUser() {
         adminPage.deleteTheUser();
     }
 
     @Then("I should see the number of records decreased by 1")
-    public void iShouldSeeTheNumberOfRecordsDecreasedBy1() {
-        assertEquals(numberOfRecords,adminPage.getNumberOfRecords());
+    public void iShouldSeeTheNumberOfRecordsDecreasedBy1(){
+        adminPage.clickOnResetBtn();
+        assertEquals(numberOfRecords-1,adminPage.getNumberOfRecords());
+    }
+
+    @When("I search about the user i added with username as {string}")
+    public void iSearchAboutTheUserIAddedWithUsernameAs(String userName) {
+        adminPage.searchWithUsername(userName);
     }
 }

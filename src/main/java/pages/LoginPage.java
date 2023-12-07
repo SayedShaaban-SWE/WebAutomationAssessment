@@ -9,10 +9,10 @@ import java.time.Duration;
 
 public class LoginPage {
 
-    private static final By LOGIN_TXT = By.id("");
-    private static final By USERNAME_INPUT_FIELD = By.id("");
-    private static final By PASSWORD_INPUT_FIELD = By.id("");
-    private static final By LOGIN_BTN = By.id("");
+    private static final By LOGIN_TXT = By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/h5");
+    private static final By USERNAME_INPUT_FIELD = By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input");
+    private static final By PASSWORD_INPUT_FIELD = By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/div[2]/input");
+    private static final By LOGIN_BTN = By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button");
     private WebDriver driver;
     private WebDriverWait wait;
     public LoginPage(WebDriver driver){
@@ -33,9 +33,9 @@ public class LoginPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(PASSWORD_INPUT_FIELD));
         driver.findElement(PASSWORD_INPUT_FIELD).sendKeys(password);
     }
-    public HomePage clickOnLoginBtn(){
+    public DashboardPage clickOnLoginBtn(){
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BTN));
         driver.findElement(LOGIN_BTN).click();
-        return new HomePage(driver);
+        return new DashboardPage(driver);
     }
 }
